@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<!-- Baisc stucture of UI without stylig-->
+<style>
+   body
+    {
+        margin: 0;
+        box-sizing: border-box;
+        background-color: rgba(229, 246, 78, 0.438);
+    }
+      .header
+    {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+       padding: 15px;
+       padding-left: 500px;
+       background-color: rgb(180, 180, 235);
+    }
+    .header h1
+    {
+        
+        color:brown;
+        font-size: 30px;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        /*gives style to h1 inside .header class only not outside h1*/
+    }
+    .header span
+    {
+      background-color: rgba(231, 248, 41, 0.841); 
+      padding: 5px;
+      padding-left: 65px;
+      padding-bottom: 20px;
+      max-height: 70px;
+      min-width: 250px;
+    }
+
+    .th
+    {
+        height: 80px;
+        width: 80px;
+        border: 2px solid black ;
+        border-collapse: collapse;
+    }
+    table,th,td{
+        border: 1px solid black;
+        border-collapse: collapse;  
+        font-size: large;
+        margin-left: 30px;
+    }
+    p
+    {
+      font-size: x-large;
+    }
+    .fieldset
+    {
+      padding: 50px;
+      background-color: rgba(190, 246, 92, 0.841); 
+      max-width: 300px;
+      margin: 50px;
+      margin-left: 450px;
+      margin-bottom: 10px;
+      margin-right: 105px;
+    }
+    .footer
+    {
+        padding: 55px 20px;
+        padding-top: 5px;
+        background-color: rgba(118, 126, 42, 0.438);
+      color: white;
+      text-align: center;
+      max-height: 50px;
+      font-size: 200%;
+    }
+    .footer h3
+    {
+      color: blueviolet;
+      text-decoration-line: overline underline;
+      font-size: xx-large;
+    }
+    .footer h1
+    {
+      text-shadow: 2px 2px 5px rgb(77, 13, 204);
+      font-size: 30px;
+      color: rgb(211, 29, 29);
+    }
+
+</style>
+
+</head>
+<body>
+  <div>
+    <header class="header">
+      <span>
+<h1> TIC-TAC-TOE </h1></span></header>
+<fieldset class="fieldset">
+<table>
+    <tr>
+        <th class="th" onmousedown="cell1()"><p id="cell1p"></p></th>
+        <th class="th" onmousedown="cell2()"><p id="cell2p"></p></th>
+        <th class="th" onmousedown="cell3()"><p id="cell3p"></p></th>
+    </tr>
+    <tr>
+        <th class="th" onmousedown="cell4()"><p id="cell4p"></p></th>
+        <th class="th" onmousedown="cell5()"><p id="cell5p"></p></th>
+        <th class="th" onmousedown="cell6()"><p id="cell6p"></p></th>
+    </tr>
+    <tr>
+        <th class="th" onmousedown="cell7()"><p id="cell7p"></p></th>
+        <th class="th" onmousedown="cell8()"><p id="cell8p"></p></th>
+        <th class="th" onmousedown="cell9()"><p id="cell9p"></p></th>
+    </tr>
+</table>  
+</fieldset>
+<footer class="footer">
+<h3 id="turn">Player A's Turn</h3>
+<h1 id="msg"></h1>
+</footer>
+</div>
+<script>
+      var a=0; //shuffle in printing icons--even odd
+      var kav; //to set icon value
+      var celln=0;// to select in switch in which ceell to print
+
+      var row1=0,row2=0,row3=0;
+      var col1=0,col2=0,col3=0;
+      var dia1=0,dia2=0;
+      var t=0;
+      var winCond = false;
+    function star() //prints * 
+    {
+if(a%2==0)
+{
+    kav="&#10060;";
+}
+else
+{
+    kav="	&#9711;";
+}
+switch(celln)
+{
+case 1 :  document.getElementById("cell1p").innerHTML=kav;
+break;
+ case 2 :  document.getElementById("cell2p").innerHTML=kav;
+ break;
+ case 3 :  document.getElementById("cell3p").innerHTML=kav;
+break;
+ case 4 :  document.getElementById("cell4p").innerHTML=kav;
+ break;
+ case 5 :  document.getElementById("cell5p").innerHTML=kav;
+break;
+ case 6 :  document.getElementById("cell6p").innerHTML=kav;
+ break;
+ case 7 :  document.getElementById("cell7p").innerHTML=kav;
+break;
+ case 8 :  document.getElementById("cell8p").innerHTML=kav;
+ break;
+ case 9 :  document.getElementById("cell9p").innerHTML=kav;
+break;
+}
+
+    }
+  function cell1()
+  {
+    celln=1;
+    star();
+    if(a%2==0)
+    {
+        row1++;
+        col1++;
+        dia1++;
+    }
+    else
+    {
+      row1+=10;
+      col1+=10;
+      dia1+=10;
+    }
+   
+    check();
+    a++;
+  }
+  function cell2()
+  {
+    celln=2;
+    star();
+    if(a%2==0)
+    {
+        row1++;
+        col2++;
+    }
+    else
+    {
+      row1+=10;
+      col2+=10;
+    }
+ 
+    check();
+    a++;
+  }
+  function cell3()
+  {
+    celln=3;
+    star();
+    if(a%2==0)
+    {
+        row1++;
+        col3++;
+        dia2++;
+    }
+    else
+    {
+      row1+=10;
+      col3+=10;
+      dia2+=10;
+    }
+    
+    check();
+    a++;
+  }
+  function cell4()
+  {
+    celln=4;
+    star();
+    if(a%2==0)
+    {
+        row2++;
+        col1++;
+    }
+    else
+    {
+      row2+=10;
+      col1+=10;
+    }
+    check();
+    a++;
+  }
+  function cell5()
+  {
+    celln=5;
+    star();
+    if(a%2==0)
+    {
+        row2++;
+        col2++;
+        dia1++;
+        dia2++;
+    }
+    else
+    {
+      row2+=10;
+      col2+=10;
+      dia1+=10;
+      dia2+=10;
+    }
+    check();
+    a++;
+  }
+  function cell6()
+  {
+    celln=6;
+    star();
+    if(a%2==0)
+    {
+        row2++;
+        col3++;
+    }
+    else
+    {
+      row2+=10;
+      col3+=10;
+    }
+    check();
+    a++;
+  }
+  function cell7()
+  {
+    celln=7;
+    star();
+    if(a%2==0)
+    {
+        row3++;
+        col1++;
+        dia2++;
+    }
+    else
+    {
+      row3+=10;
+      col1+=10;
+      dia2+=10;
+    }
+    check();
+    a++;
+  }
+  function cell8()
+  {
+    celln=8;
+    star();
+    if(a%2==0)
+    {
+        row3++;
+        col2++;
+    }
+    else
+    {
+      row3+=10;
+      col2+=10;
+    }
+    check();
+    a++;
+  }
+  function cell9()
+  {
+    celln=9;
+    star();
+    if(a%2==0)
+    {
+        row3++;
+        col3++;
+        dia1++;
+    }
+    else
+    {
+      row3+=10;
+      col3+=10;
+      dia1+=10;
+    }
+    check();
+    a++;
+  }
+
+  function check()
+  {
+    
+    if(row1==3 || row2==3 || row3==3 || col1==3 ||col2==3 ||col3==3 || dia1==3 || dia2==3)
+    {
+        document.getElementById("msg").innerHTML="Player A Won";
+      t++;
+    }
+    else if(row1==30 || row2==30 || row3==30 || col1==30 || col2==30 || col3==30 || dia1==30 || dia2==30)
+    {
+      document.getElementById("msg").innerHTML="Player B Won";
+      t++;
+    }
+    else if(a==8)
+    {
+      document.getElementById("msg").innerHTML="GameResult Is  A Tie";
+      t++;
+    }
+    if(t>0)
+    {
+      document.getElementById("turn").innerHTML="";
+    }
+else{
+if(a%2==0 )
+{
+document.getElementById("turn").innerHTML="Player B's Turn";
+}
+else
+{
+  document.getElementById("turn").innerHTML="Player A's Turn";
+}
+}
+  }
+      </script>
+</body>
